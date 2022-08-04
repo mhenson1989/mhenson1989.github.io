@@ -83,7 +83,7 @@ function buildCharts(sample) {
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
 
-    var yticks = otuIds.slice(0,10).map(id => '${otuID}' + id).reverse();
+    var yticks = otuIds.slice(0,10).map(id => 'OTU ' + id).reverse();
 
     // 8. Create the trace for the bar chart. 
     var barData = [
@@ -100,11 +100,11 @@ function buildCharts(sample) {
         tickmode: "array",
         tickvals: [0,1,2,3,4,5,6,7,8,9],
         ticktext: yticks
-      },
+      }};
 
     // 10. Use Plotly to plot the data with the layout.
 
-    Plotly.newPlot("bar", barData, barLayout, {responsive: true})};
+    Plotly.newPlot("bar", barData, barLayout, {responsive: true});
 
 // Bar and Bubble charts
     // 1. Create the trace for the bubble chart.
@@ -126,13 +126,11 @@ function buildCharts(sample) {
       showlegend: false,
       xaxis: {title: "OTU Id", automargin: true},
       yaxis: {automargin: true},
-      hovermode: "closest"
+      hovermode: "closest",
     };
 
     // 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot("bubble", bubbleData, bubbleLayout, {responsive: true}); 
-  });
-}
 
 // Deliverable 3 - Guage Chart
 
@@ -142,7 +140,7 @@ function buildCharts(sample) {
     // 2. Create a variable that holds the first sample in the metadata array.
     // 3. Create a variable that holds the washing frequency.
 
-    var washFreq = +metadataArray[0].wFreq;
+    var washFreq = +metadataArray[0].wfreq;
     
     // 4. Create the trace for the gauge chart.
     var gaugeData = [
@@ -151,7 +149,7 @@ function buildCharts(sample) {
         value: washFreq,
         title: { text: "<b>Belly Button Wash Frequency</b><br>Scrubs per week"},
         type: "indicator",
-        mode: "guage+number",
+        mode: "gauge+number",
         gauge: {
           axis: {
             range: [null, 10],
@@ -186,6 +184,7 @@ function buildCharts(sample) {
     };
 
     // 6. Use Plotly to plot the gauge data and layout.
-    Plotly.newPlot("guage", gaugeData, gaugeLayout, {responsive: true});
-
+    Plotly.newPlot("gauge", gaugeData, gaugeLayout, {responsive: true});
+  });
+}
 
